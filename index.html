@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Declarative Drawing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+      }
+
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script>
+      const canvas = document.getElementsByTagName('canvas')[0]
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      const context = canvas.getContext('2d')
+
+      function draw(specification) {
+        const lines = specification.split('\n')
+        for (const line of lines) {
+          if (line === 'circle') {
+            context.beginPath()
+            context.arc(0, 0, 10, 0, 2 * Math.PI)
+            context.stroke()
+          } else if (line === 'square') {
+            context.beginPath()
+            context.rect(0, 0, 10, 10)
+            context.stroke()
+          }
+        }
+      }
+
+      draw(
+        'circle' + '\n' +
+        'square'
+      )
+    </script>
+  </body>
+</html>
